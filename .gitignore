@@ -2,6 +2,7 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .ebextensions/*
+.gitignore
 gym_rat/.env
 mysql_commands.txt
 media/*
