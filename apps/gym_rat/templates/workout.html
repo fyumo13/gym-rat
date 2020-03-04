@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Gym Rat</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Gym Rat is a fitness tracking app that allows users to log their workouts using exercises from our dedicated database.">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/gym_rat.css' %}" async>
+    </head>
+    <body>
+        <nav class="navbar navbar-custom fixed-top navbar-expand-lg" id="navbar">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" 
+            aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'gym_rat:dashboard' %}">
+                <img src="{% static 'img/logo.png' %}" alt="logo" width="140" height="35">
+            </a>
+            <div class="collapse navbar-collapse" id="navbarToggler">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="{% url 'gym_rat:dashboard' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="{% url 'gym_rat:exercises' %}">Exercises</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="{% url 'login_registration:logout' %}">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="main">
+            <div class="workout">
+                <div class="container">
+                    <div class="jumbotron">
+                        <h2>{{ workout }}</h2>
+                        <table class="table table-bordered table-dark">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Exercise</th>
+                                    <th scope="col">Weight (lbs.)</th>
+                                    <th scope="col">Reps</th>
+                                </tr>
+                            </thead>
+                            {% if sets %}
+                                <tbody>
+                                    {% for set in sets %}
+                                        <tr>
+                                            <td><a href="{% url 'gym_rat:exercise' id=set.exercise.id %}">{{ set.exercise.name }}</a></td>
+                                            <td>{{ set.weight }}</td>
+                                            <td>{{ set.reps }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            {% endif %}
+                        </table>
+                        {% if request.session.workout == workout.id %}
+                            <a href="{% url 'gym_rat:exercises' %}" class="btn btn-primary">Add an Exercise</a>
+                            <a href="{% url 'gym_rat:finish' %}" class="btn btn-secondary">Finish workout</a>
+                        {% else %}
+                            <a href="{% url 'gym_rat:edit_workout' id=workout.id %}" class="btn btn-primary">Edit Workout</a>
+                        {% endif %}
+                        <a href="{% url 'gym_rat:del_workout' id=workout.id %}" class="btn btn-danger">Delete Workout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}" async></script>
+    </body>
+</html>

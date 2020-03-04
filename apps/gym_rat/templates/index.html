@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Gym Rat - Login</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Gym Rat is a fitness tracking app that allows users to log their workouts using exercises from our dedicated database.">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/gym_rat.css' %}" async>
+    </head>
+    <body>
+        <div class="row banner">
+            <img src="{% static 'img/logo.png' %}" alt="logo">
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col register">
+                        <form class="form-signin" action="{% url 'login_registration:register' %}" method="post">
+                            {% csrf_token %}
+                            <h2 class="form-signin-heading text-center">Register</h2>
+                            <div class="form-group">
+                                <label class="sr-only">First Name</label>
+                                <input type="text" name="first_name" class="form-control" placeholder="First name" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Last Name</label>
+                                <input type="text" name="last_name" class="form-control" placeholder="Last name" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Email address</label>
+                                <input type="text" name="email" inputmode="email" class="form-control" placeholder="Email address" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Confirm Password</label>
+                                <input type="password" name="confirm_password" class="form-control" placeholder="Confirm Password" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Birthdate</label>
+                                <input type="text" name="birthdate" class="form-control" placeholder="Birthdate" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Current Weight</label>
+                                <input type="number" inputmode="numeric" name="current_weight" class="form-control" placeholder="Current Weight" autofocus> 
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Goal Weight</label>
+                                <input type="number" inputmode="numeric" name="goal_weight" class="form-control" placeholder="Goal Weight" autofocus>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-form-label col-sm-2">Height</label>
+                                <div class="col-sm-3">
+                                    <input type="number" inputmode="numeric" name="height_ft" class="form-control" placeholder="Feet" autofocus>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="number" inputmode="numeric" name="height_in" class="form-control" placeholder="Inches" autofocus>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                    <label class="form-check-label" for="male">
+                                        Male
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                    <label class="form-check-label" for="female">
+                                        Female
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="gender" id="no_preference" value="no_preference">
+                                    <label class="form-check-label" for="no_preference">
+                                        No Preference
+                                    </label>
+                                </div>
+                            </div>
+                            <button class="btn btn-lg btn-primary" type="submit">Register</button>
+                        </form>
+                    </div>
+                    <div class="col login">
+                        <form class="form-signin" action="{% url 'login_registration:login' %}" method="post">
+                            {% csrf_token %}
+                            <h2 class="form-signin-heading text-center">Log In</h2>
+                            <div class="form-group">
+                                <label class="sr-only">Email address</label>
+                                <input type="text" name="email" inputmode="email" class="form-control" placeholder="Email address" required autofocus>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only">Password</label>
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <button class="btn btn-lg btn-primary" type="submit">Log In</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col errors">
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-danger text-center" role="alert">
+                                    <strong>Uh oh!</strong> {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}" async></script>
+    </body>
+</html>
