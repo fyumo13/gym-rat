@@ -141,5 +141,6 @@ def edit_workout(request, id):
 # deletes the chosen workout
 def del_workout(request, id):
     Workout.objects.get(id=id).delete()
-    del request.session['workout']
+    if 'workout' in request.session:
+        del request.session['workout']
     return redirect('gym_rat:dashboard')

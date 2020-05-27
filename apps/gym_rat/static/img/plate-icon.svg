@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="304px" height="265px" viewBox="0 0 304 265" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group" transform="translate(2.000000, 2.000000)" fill="#FFFFFF" stroke="#000000">
+            <path d="M0.476889105,120 L298.523111,120 C298.83902,123.463658 299,126.965419 299,130.5 C299,202.57316 232.06657,261 149.5,261 C66.9334299,261 0,202.57316 0,130.5 C0,126.965419 0.160979969,123.463658 0.476889105,120 Z" id="Combined-Shape" stroke-width="3"></path>
+            <ellipse id="Oval" stroke-width="3" cx="150" cy="120" rx="150" ry="120"></ellipse>
+            <ellipse id="Oval" stroke-width="2" cx="150" cy="117.5" rx="135" ry="107.5"></ellipse>
+            <ellipse id="Oval" cx="150" cy="120" rx="40" ry="35"></ellipse>
+            <ellipse id="Oval" cx="150" cy="120" rx="15" ry="10"></ellipse>
+        </g>
+    </g>
+</svg>

@@ -1,122 +1,121 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <title>Gym Rat - Exercises</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Gym Rat is a fitness tracking app that allows users to log their workouts using exercises from our dedicated database.">
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/gym_rat.css' %}" async>
-    </head>
-    <body>
-        <nav class="navbar navbar-custom fixed-top navbar-expand-lg" id="navbar">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" 
-            aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'gym_rat:dashboard' %}">
-                <img src="{% static 'img/logo.png' %}" alt="logo" width="140" height="35">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarToggler">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="{% url 'gym_rat:dashboard' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="{% url 'gym_rat:exercises' %}">Exercises</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="{% url 'login_registration:logout' %}">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="main">
-            <div class="edit-profile">
-                <div class="container">
-                    <div class="jumbotron">
-                        {% if user %}
-                            {% if request.session.user_id == user.id %}
-                                <form class="form" action="{% url 'gym_rat:edit_profile' %}" method="post">
-                                    {% csrf_token %}
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-2">First Name</label>
-                                        <input type="text" name="first_name" class="form-control col-sm-10" placeholder={{ user.first_name }} autofocus>
+<html lang="en-US">
+<head>
+    <title>Gym Rat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="description" content="Gym Rat is a fitness tracking app that allows users to log their workouts using exercises from our dedicated database.">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'scss/theme.css' %}" async>
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.min.css' %}" async>
+    <link rel="icon" href="{% static 'img/dumbbell-icon.svg' %}" async>
+</head>
+<body>
+    <nav class="navbar navbar-custom navbar-expand-lg" id="navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" 
+        aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="{% url 'gym_rat:dashboard' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="{% url 'gym_rat:exercises' %}">Exercises</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="{% url 'login_registration:logout' %}">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="main">
+        <div class="edit-profile">
+            <div class="container">
+                    {% if user %}
+                        {% if request.session.user_id == user.id %}
+                            <form class="form" action="{% url 'gym_rat:edit_profile' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">First Name</label>
+                                    <input type="text" name="first_name" class="form-control col-sm-10" placeholder={{ user.first_name }} autofocus>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control col-sm-10" placeholder={{ user.last_name }} autofocus>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Current Weight</label>
+                                    <input type="number" inputmode="numeric" name="current_weight" class="form-control col-sm-10" placeholder={{ user.current_weight }} autofocus>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Goal Weight</label>
+                                    <input type="number" inputmode="numeric" name="goal_weight" class="form-control col-sm-10" placeholder={{ user.goal_weight }} autofocus>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Height</label>
+                                    <input type="number" inputmode="numeric" name="height_ft" class="form-control col-sm-2 height" placeholder="Feet" autofocus>
+                                    <input type="number" inputmode="numeric" name="height_in" class="form-control col-sm-2 height" placeholder="Inches" autofocus>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label  col-sm-2">Gender</label>
+                                    <div class="form-check form-check-inline">
+                                        {% if user.gender == 'Male' %}
+                                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
+                                        {% else %}
+                                            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+                                        {% endif %}
+                                        <label class="form-check-label" for="male">
+                                            Male
+                                        </label>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col">Last Name</label>
-                                        <input type="text" name="last_name" class="form-control col-sm-10" placeholder={{ user.last_name }} autofocus>
+                                    <div class="form-check form-check-inline">
+                                        {% if user.gender == 'Female' %}
+                                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" checked>
+                                        {% else %}
+                                            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+                                        {% endif %}
+                                        <label class="form-check-label" for="female">
+                                            Female
+                                        </label>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-2">Current Weight</label>
-                                        <input type="number" inputmode="numeric" name="current_weight" class="form-control col-sm-10" placeholder={{ user.current_weight }} autofocus>
+                                    <div class="form-check form-check-inline">
+                                        {% if user.gender == 'No Preference' %}
+                                            <input class="form-check-input" type="radio" name="gender" id="no_preference" value="no_preference" checked>
+                                        {% else %}
+                                            <input class="form-check-input" type="radio" name="gender" id="no_preference" value="no_preference">
+                                        {% endif %}
+                                        <label class="form-check-label" for="no_preference">
+                                            No Preference
+                                        </label>
                                     </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-2">Goal Weight</label>
-                                        <input type="number" inputmode="numeric" name="goal_weight" class="form-control col-sm-10" placeholder={{ user.goal_weight }} autofocus>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-2">Height</label>
-                                        <input type="number" inputmode="numeric" name="height_ft" class="form-control col-sm-2 height" placeholder="Feet" autofocus>
-                                        <input type="number" inputmode="numeric" name="height_in" class="form-control col-sm-2 height" placeholder="Inches" autofocus>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-form-label  col-sm-2">Gender</label>
-                                        <div class="form-check form-check-inline">
-                                            {% if user.gender == 'Male' %}
-                                                <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked>
-                                            {% else %}
-                                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-                                            {% endif %}
-                                            <label class="form-check-label" for="male">
-                                                Male
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {% if user.gender == 'Female' %}
-                                                <input class="form-check-input" type="radio" name="gender" id="female" value="female" checked>
-                                            {% else %}
-                                                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-                                            {% endif %}
-                                            <label class="form-check-label" for="female">
-                                                Female
-                                            </label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            {% if user.gender == 'No Preference' %}
-                                                <input class="form-check-input" type="radio" name="gender" id="no_preference" value="no_preference" checked>
-                                            {% else %}
-                                                <input class="form-check-input" type="radio" name="gender" id="no_preference" value="no_preference">
-                                            {% endif %}
-                                            <label class="form-check-label" for="no_preference">
-                                                No Preference
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </form>
-                                <form class="form mt-3" action="{% url 'login_registration:profile_pic' %}" method="post" enctype="multipart/form-data">
-                                    {% csrf_token %}
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-2">Upload a Profile Pic</label>
-                                        <input class="form-control col-sm-3" type="file" name="profile_pic">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Upload</button>
-                                </form>
-                                {% if user.profile_pic %}
-                                    <img src="{{ user.profile_pic_url }}" alt="Profile Pic" class="profile-pic mt-3">
-                                {% endif %}
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                            <form class="form mt-3" action="{% url 'login_registration:profile_pic' %}" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-2">Upload a Profile Pic</label>
+                                    <input class="form-control col-sm-3" type="file" name="profile_pic">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </form>
+                            {% if user.profile_pic %}
+                                <img src="{{ user.profile_pic_url }}" alt="Profile Pic" class="profile-pic mt-3">
                             {% endif %}
                         {% endif %}
-                    </div>
-                </div>
+                    {% endif %}
             </div>
         </div>
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}" async></script>
-    </body>
+    </div>
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}" async></script>
+</body>
 </html>

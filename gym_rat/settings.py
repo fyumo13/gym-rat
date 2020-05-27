@@ -1,10 +1,9 @@
 import os
-import environ
+from dotenv import load_dotenv
 
-env = environ.Env()
-environ.Env.read_env()
+load_dotenv(verbose=True)
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,7 +13,7 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS =['*']
 
@@ -78,16 +77,16 @@ else:
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'gym_rat',
-            'USER': 'root',
-            'PASSWORD': 'mypassword',
+            'USER': os.getenv('db_user'),
+            'PASSWORD': os.getenv('db_password'),
             'HOST': 'localhost',
             'PORT': '3306',
         },
         'users': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'users',
-            'USER': 'root',
-            'PASSWORD': 'mypassword',
+            'USER': os.getenv('db_user'),
+            'PASSWORD': os.getenv('db_password'),
             'HOST': 'localhost',
             'PORT': '3306',
         }

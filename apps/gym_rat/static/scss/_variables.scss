@@ -1,14 +1,11 @@
-$body-bg: #000000;
-$body-color: #ffffff;
-$fa-font-path: 'webfonts';
+$font-family-base: 'Montserrat', sans-serif;
+$body-bg: #f8f7f9;
 
 $theme-colors: (
-    "primary": #7034fb,
-    "secondary": #fd5bda,
-    "success": #58ffbf,
-    "danger": #f85858,
-    "warning": #ebff3a,
-    "info": #3efff5,
-    "light": #ffffff,
-    "dark": #000000,
-);
+    'dark': #000,
+    'light': #f8f7f9,
+    'pizzazz': #fa53dc,
+    'violet': #7023ff,
+    'space-cadet': #27293e,
+    'middle-blue': #92dce5
+)

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="600px" height="164px" viewBox="0 0 600 164" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-2" transform="translate(0.000000, 2.000000)">
+            <path d="M110,70 L490,70 L490,65 L500,65 L500,95 L490,95 L490,90 L110,90 L110,95 L100,95 L100,65 L110,65 L110,70 Z M0,70 L25,70 L25,90 L0,90 L0,70 Z M575,70 L600,70 L600,90 L575,90 L575,70 Z" id="bar" fill="#000000"></path>
+            <g id="weights" transform="translate(25.000000, 0.000000)" stroke="#000000" stroke-width="4">
+                <g id="Group">
+                    <rect id="Rectangle" x="50" y="0" width="25" height="160" rx="8"></rect>
+                    <rect id="Rectangle" x="25" y="15" width="25" height="130" rx="8"></rect>
+                    <rect id="Rectangle" x="0" y="30" width="25" height="100" rx="8"></rect>
+                </g>
+                <g id="Group-Copy" transform="translate(512.500000, 80.000000) scale(-1, 1) translate(-512.500000, -80.000000) translate(475.000000, 0.000000)">
+                    <rect id="Rectangle" x="50" y="0" width="25" height="160" rx="8"></rect>
+                    <rect id="Rectangle" x="25" y="15" width="25" height="130" rx="8"></rect>
+                    <rect id="Rectangle" x="0" y="30" width="25" height="100" rx="8"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

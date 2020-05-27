@@ -1,96 +1,84 @@
 <!doctype html>
-<html lang="en">
-    <head>
-        <title>Gym Rat</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Gym Rat is a fitness tracking app that allows users to log their workouts using exercises from our dedicated database.">
-        {% load static %}
-        <link rel="stylesheet" href="{% static 'css/gym_rat.css' %}" async>
-    </head>
-    <body>
-        <nav class="navbar navbar-custom fixed-top navbar-expand-lg" id="navbar">
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" 
-            aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'gym_rat:dashboard' %}">
-                <img src="{% static 'img/logo.png' %}" alt="logo" width="140" height="35">
-            </a>
-            <div class="collapse navbar-collapse" id="navbarToggler">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="{% url 'gym_rat:dashboard' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="{% url 'gym_rat:exercises' %}">Exercises</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-uppercase" href="{% url 'login_registration:logout' %}">Log Out</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="main">
+<html lang="en-US">
+<head>
+    <title>Gym Rat</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+    <meta name="description" content="Gym Rat is a fitness tracking app that allows users to log their workouts using exercises from our dedicated database.">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'scss/theme.css' %}" async>
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.min.css' %}" async>
+    <link rel="icon" href="{% static 'img/dumbbell-icon.svg' %}" async>
+</head>
+<body>
+    <nav class="navbar navbar-custom navbar-expand-lg" id="navbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" 
+        aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="{% url 'gym_rat:dashboard' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="{% url 'gym_rat:exercises' %}">Exercises</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-uppercase" href="{% url 'login_registration:logout' %}">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="main">
+        <div id="dashboard">
             <div class="user-profile">
-                <div class="container">
-                    <div class="jumbotron">
-                        {% if user.profile_pic %}
-                            <a href="{{ user.profile_pic_url }}"><img src="{{ user.profile_pic_url }}" alt="Profile Pic" class="profile-pic"></a>
-                        {% endif %}
-                        <h3 class=>{{ user.first_name }} {{ user.last_name }}</h3>
-                        <p>Age: {{ age }}  </p>
-                        {% if user.gender == 'Male' or user.gender == 'Female' %}
-                            <p>Gender: {{ user.gender }}</p>
-                        {% endif %}
-                        {% if user.height %}
-                            <p>Height: {{ height }}</p>
-                        {% endif %}
-                        {% if user.current_weight %}
-                            <p>Current Weight: {{ user.current_weight }} lbs.</p>
-                        {% endif %}
-                        {% if user.goal_weight %}
-                            <p>Goal Weight: {{ user.goal_weight }} lbs.</p>
-                        {% endif %}
-                        <a href="{% url 'gym_rat:user_profile' %}" class="btn btn-primary">Edit Profile</a>
+                    {% if user.profile_pic %}
+                        <a href="{{ user.profile_pic_url }}"><img src="{{ user.profile_pic_url }}" alt="Profile Pic" class="profile-pic"></a>
+                    {% endif %}
+                    <div class="container-fluid text-center">
+                        <h2>{{ user.first_name }} {{ user.last_name }} <span><a href="{% url 'gym_rat:user_profile' %}"><i class="fas fa-edit"></i></a></span></h2>
+                        <button class="btn btn-space-cadet" data-toggle="collapse" href="#profile" role="button" aria-expanded="false" aria-controls="profile">About</button>
+                        <div class="collapse" id="profile">
+                            <div class="card card-body">
+                                <p>Age: {{ age }}</p>
+                                {% if user.height %}
+                                    <p>Height: {{ height }}</p>
+                                {% endif %}
+                                {% if user.current_weight %}
+                                    <p>Current Weight: {{ user.current_weight }} lbs.</p>
+                                {% endif %}
+                                {% if user.goal_weight %}
+                                    <p>Goal Weight: {{ user.goal_weight }} lbs.</p>
+                                {% endif %}
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
             <div class="workouts">
-                <div class="container">
-                    <div class="jumbotron">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <h4>Workouts</h4>
-                            </div>
-                            <div class="col-sm-4">
-                                <a href="{% url 'gym_rat:create' %}" class="btn btn-primary">Add Workout</a>
-                            </div>
-                        </div>
-                        <div class="row">
-                            {% if workouts %}
-                                <ul>
-                                {% for workout in workouts %}
-                                    <a href="{% url 'gym_rat:show_workout' id=workout.id %}">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <li>{{ workout }}</li>
-                                            </div>
-                                        </div>
-                                    </a>
-                                {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </div>
-                    </div>
+                <div class="container-fluid text-center">
+                    <h2>Workouts</h2>
+                    <a class="btn btn-space-cadet" href="{% url 'gym_rat:create' %}">Add Workout</a>
+                    {% if workouts %}
+                        <ul>
+                            {% for workout in workouts %}
+                                <a href="{% url 'gym_rat:show_workout' id=workout.id %}">
+                                    <div class="card card-body">
+                                        <li>{{ workout }}</li>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <script
-            src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}" async></script>
-    </body>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
 </html>

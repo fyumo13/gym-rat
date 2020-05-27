@@ -17,7 +17,7 @@ $(document).ready(function() {
         $(repsInput).addClass("form-control");
         $(repsInput).appendTo(".reps-" + setID);
         var button = document.createElement("button");
-        $(button).addClass("btn btn-primary");
+        $(button).addClass("btn btn-violet");
         $(button).html("Edit Set");
         $(button).appendTo(".edit-set-form-" + setID);
     });

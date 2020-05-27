@@ -1,0 +1,216 @@
+a {
+    color: #844fff;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Teko', sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+// custom styles for login/registration page banner
+.banner {
+    img {
+      margin: 0 auto;  
+    }
+}
+
+// custom styles for buttons
+.btn, .btn:focus, .btn:hover {
+    border: 1px solid black;
+    font-size: 0.92rem;
+}
+
+// stops fixed navbar from hovering on top of each page's first section
+.edit-profile, .exercise, .exercise-list, .workout, .user-profile {
+    margin-top: 71px;
+}
+
+.edit-set-form {
+    margin-top: 10px;
+}
+
+// custom styles for edit profile page
+.edit-profile {
+    .height {
+        margin-right: 10px;
+        width: 25%;
+    }
+}
+
+// custom styles for single exercise page
+.exercise {
+    .table {
+        margin-top: 20px;
+    }
+}
+
+// custom styles for exercise list
+.exercise-list {
+    ul {
+        margin-top: 10px;
+        padding-left: 0;
+    }
+    .card {
+        border-radius: 0;
+        background: map-get($grays, '800');
+    }
+    .card:hover {
+        background: map-get($grays, '900');
+    }
+}
+
+// custom styles for jumbotrons
+.jumbotron {
+    padding: 40px;
+    background: map-get($grays, '800');
+}
+
+// custom styles for login and registration sections
+.login, .register {
+    background: map-get($grays, '800');
+    margin: 10px;
+    border-radius: 10px;
+    form {
+        padding: 10px;
+        input {
+            border: 1px solid black;
+        }
+    }
+}
+
+// custom styles for main content section
+.main, .navbar-custom {
+    font-family: 'Questrial', sans-serif;
+}
+
+// custom styles for navbar
+.navbar-custom {
+    background: map-get($grays, '900');
+    box-shadow: 1px 1px 5px #000;
+    // font-size: 0.85rem;
+    a, .navbar-toggler {
+        color: #ffffff;
+    }
+    a:hover {
+        color: map-get($theme-colors, 'secondary');
+    }
+    .navbar-brand {
+        margin-right: 0;
+        margin-left: 15px;
+    }
+    .navbar-toggler { 
+        padding: 0;
+    }
+    .navbar-toggler-icon {
+        color: map-get($theme-colors, 'secondary');
+    }
+}
+
+// custom styles for profile pic
+.profile-pic {
+    width: 100%;
+    border: 1px solid white;
+    margin-bottom: 10px;
+}
+
+// custom styles for user's list of previous workouts
+.workouts {
+    ul {
+        padding-left: 15px;
+        width: 100%;
+        text-align: center;
+    }
+    .col-sm-4 > a {
+        margin-bottom: 10px;
+    }
+    .card, .jumbotron {
+        background: map-get($grays, '600');
+    }
+    .card {
+        border-radius: 0;
+        color: map-get($theme-colors, 'primary');
+    }
+    .card:hover {
+        background: map-get($grays, '700');
+        color: #ffffff;
+    }
+}
+
+// custom styles for user profile section
+.user-profile {
+    h3 {
+        text-align: center;
+    }
+    p {
+        font-size: 0.90rem;
+    }
+    span {
+        font-weight: bolder;
+    }
+}
+
+// extra small devices, phones
+@media only screen and (max-width: 420px) {
+    .banner {
+        img {
+          margin: 0 auto;  
+          width: 80%;
+        }
+    }
+
+    .login, .register {
+        .row {
+            width: 325px;
+        }
+    }
+}
+
+@media only screen and (min-width: 420px) {
+    .banner {
+        img {
+            margin: 0 auto;
+            width: 70%;
+        }
+    }
+
+    .login, .register {
+        .row {
+            width: 335px;
+        }
+    }
+}
+
+// large devices, wide screens 
+@media only screen and (min-width: 1200px) {
+    .banner {
+        img {
+            margin: 0 auto;
+            width: 50%;
+        }
+    }
+
+    .profile-pic {
+        width: 35%;
+    }
+
+    .workouts {
+        ul {
+            width: 13.5%;
+            text-align: left;
+        }
+    }
+
+    .user-profile {
+        h3 {
+            text-align: left;
+        }
+    }
+}
